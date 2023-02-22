@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.schoolmonster.SchoolMonsterDetailFragment">
+
+    <TextView
+        android:id="@+id/action_bar"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:background="@color/teal_200"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="8dp"
+        android:text="몬스터 상세정보"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/action_bar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/school_work_info_area"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/difficulty_rating_area"
+        app:layout_constraintTop_toBottomOf="@id/action_bar">
+
+
+        <ImageView
+            android:id="@+id/monster_detail_imageview"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_image_picker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/subject_textview"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/school_work_title_edit_textview"
+            app:layout_constraintStart_toEndOf="@id/monster_detail_imageview"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="과목" />
+
+        <TextView
+            android:id="@+id/school_work_title_edit_textview"
+            android:layout_width="0dp"
+            android:layout_height="33dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/subject_textview"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="제목" />
+
+        <TextView
+            android:id="@+id/school_work_simpleInfo_textview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/monster_detail_imageview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/monster_detail_imageview"
+            app:layout_constraintTop_toBottomOf="@id/school_work_title_edit_textview"
+            tools:text="활동 설명이 담기는 곳입. 활동 설명이 담기는 곳입니다. 활동 설명이 담기는 곳입니다" />
+
+        <TextView
+            android:id="@+id/school_work_detail_textview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/monster_detail_imageview"
+            tools:text="활동 시 적어줄 개별 세특을 수정하세요. 활동 시 적어줄 개별 세특을 수정하세요 활동 시 적어줄 개별 세특을 수정하세요 활동 시 적어줄 개별 세특을 수정하세요" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/difficulty_rating_area"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@id/number_picker_area"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/school_work_info_area">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:text="@string/expected_difficulty"
+            android:textSize="18sp" />
+
+        <RatingBar
+            android:id="@+id/expected_difficulty_rating"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="10dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="1"
+            android:stepSize="1" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/number_picker_area"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/participation_area"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/difficulty_rating_area">
+
+        <TextView
+            android:id="@+id/score_label"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="처치 시 획득 경험치"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/ability_leadership"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/leadership_textview"
+            app:layout_constraintStart_toStartOf="@id/leadership_textview"
+            app:layout_constraintTop_toBottomOf="@id/leadership_textview" />
+
+        <TextView
+            android:id="@+id/leadership_textview"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@color/gray_cc"
+            android:gravity="center"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toStartOf="@id/academic_textview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/score_label"
+            tools:text="3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/ability_academical"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/academic_textview"
+            app:layout_constraintStart_toStartOf="@id/academic_textview"
+            app:layout_constraintTop_toBottomOf="@id/academic_textview" />
+
+        <TextView
+            android:id="@+id/academic_textview"
+            android:layout_width="55dp"
+            android:layout_height="0dp"
+            android:background="@color/gray_cc"
+            android:gravity="center"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/leadership_textview"
+            app:layout_constraintEnd_toStartOf="@id/cooperation_textview"
+            app:layout_constraintStart_toEndOf="@id/leadership_textview"
+            app:layout_constraintTop_toTopOf="@id/leadership_textview"
+            tools:text="3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/ability_cooperation"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/cooperation_textview"
+            app:layout_constraintStart_toStartOf="@id/cooperation_textview"
+            app:layout_constraintTop_toBottomOf="@id/cooperation_textview" />
+
+        <TextView
+            android:id="@+id/cooperation_textview"
+            android:layout_width="55dp"
+            android:layout_height="0dp"
+            android:background="@color/gray_cc"
+            android:gravity="center"
+
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/leadership_textview"
+            app:layout_constraintEnd_toStartOf="@id/sincerity_textview"
+            app:layout_constraintStart_toEndOf="@id/academic_textview"
+            app:layout_constraintTop_toTopOf="@id/leadership_textview"
+            tools:text="3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/ability_sincerity"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/sincerity_textview"
+            app:layout_constraintStart_toStartOf="@id/sincerity_textview"
+            app:layout_constraintTop_toBottomOf="@id/sincerity_textview" />
+
+        <TextView
+            android:id="@+id/sincerity_textview"
+            android:layout_width="55dp"
+            android:layout_height="0dp"
+            android:background="@color/gray_cc"
+            android:gravity="center"
+
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/leadership_textview"
+            app:layout_constraintEnd_toStartOf="@id/career_textview"
+            app:layout_constraintStart_toEndOf="@id/cooperation_textview"
+            app:layout_constraintTop_toTopOf="@id/leadership_textview"
+            tools:text="3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/ability_career"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/career_textview"
+            app:layout_constraintStart_toStartOf="@id/career_textview"
+            app:layout_constraintTop_toBottomOf="@id/career_textview" />
+
+        <TextView
+            android:id="@+id/career_textview"
+            android:layout_width="55dp"
+            android:layout_height="0dp"
+            android:background="@color/gray_cc"
+            android:gravity="center"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/leadership_textview"
+
+            app:layout_constraintEnd_toStartOf="@id/money_textview"
+            app:layout_constraintStart_toEndOf="@id/sincerity_textview"
+            app:layout_constraintTop_toTopOf="@id/leadership_textview"
+            tools:text="3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/ability_point"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/money_textview"
+            app:layout_constraintStart_toStartOf="@id/money_textview"
+            app:layout_constraintTop_toBottomOf="@id/money_textview" />
+
+        <TextView
+            android:id="@+id/money_textview"
+            android:layout_width="55dp"
+            android:layout_height="0dp"
+            android:background="@color/palette_selection"
+            android:gravity="center"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/leadership_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/career_textview"
+            app:layout_constraintTop_toTopOf="@id/leadership_textview"
+            tools:text="10" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/participation_area"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/school_work_participation_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/number_picker_area">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="현재 참여 인원"
+            android:textSize="16sp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/gray_cc"
+            app:cardCornerRadius="20dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/participation_recyclerview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="10dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_participating_student" />
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/school_work_participation_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="활동 참여"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

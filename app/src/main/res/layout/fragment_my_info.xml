@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.home.MyInfoFragment">
+
+    <EditText
+        android:id="@+id/my_school_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/draw_bottom_line"
+        android:gravity="center"
+        android:padding="5dp"
+        android:hint="학교명"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/my_user_profile_imageview"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/my_student_number_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/draw_bottom_line"
+        android:gravity="center"
+        android:padding="5dp"
+        android:hint="학번"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/my_user_profile_imageview"
+        app:layout_constraintTop_toBottomOf="@id/my_school_edittext"/>
+
+    <TextView
+        android:id="@+id/my_name_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/draw_bottom_line"
+        android:gravity="center"
+        android:padding="5dp"
+        android:hint="성명"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/my_user_profile_imageview"
+        app:layout_constraintTop_toBottomOf="@id/my_student_number_textview" />
+
+    <EditText
+        android:id="@+id/my_nickname_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/draw_bottom_line"
+        android:gravity="center"
+        android:padding="5dp"
+        android:hint="별명"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/my_user_profile_imageview"
+        app:layout_constraintTop_toBottomOf="@id/my_name_textview" />
+
+    <EditText
+        android:id="@+id/my_birthday_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/draw_bottom_line"
+        android:gravity="center"
+        android:padding="5dp"
+        android:hint="생년월일"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/my_user_profile_imageview"
+        app:layout_constraintTop_toBottomOf="@id/my_nickname_edittext" />
+
+    <ImageView
+        android:id="@+id/my_user_profile_imageview"
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/my_birthday_edittext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/draw_outlines"
+        app:layout_constraintBottom_toTopOf="@id/number_picker_area"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/my_user_profile_imageview"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/student_achieved_quest_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            tools:text="성취한 업적들" />
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/show_radar_chart_btn"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="25dp"
+        android:src="@drawable/shape_pentagon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/my_user_profile_imageview" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/bg_rectangle"
+        android:backgroundTint="@color/teal_200"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="2dp"
+        android:text="그래프 보기"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/show_radar_chart_btn"
+        app:layout_constraintEnd_toEndOf="@id/show_radar_chart_btn"
+        app:layout_constraintStart_toStartOf="@id/show_radar_chart_btn" />
+
+    <TableLayout
+        android:id="@+id/number_picker_area"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/draw_outlines"
+        app:layout_constraintBottom_toBottomOf="@id/show_radar_chart_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/show_radar_chart_btn"
+        app:layout_constraintTop_toTopOf="@id/show_radar_chart_btn">
+
+        <TableRow
+            android:layout_marginBottom="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="리더십"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/leadership_student_score_textview"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/basic_score"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="학업력"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/academic_student_score_textview"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/basic_score"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginBottom="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="협동성"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/cooperation_student_score_textview"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/basic_score"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="진로"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/career_student_score_textview"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/basic_score"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="성실성"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/sincerity_student_score_textview"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/basic_score"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="돈"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/sum_student_score_textview"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/basic_score"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/pet_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="나의 등록 펫(참여 학급)"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/number_picker_area" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/pet_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/gray_cc"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pet_label">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/my_pet_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_participating_student" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/student_detail_info_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/edit_my_info_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pet_container"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/edit_my_info_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/teal_200"
+        android:text="정보 수정하기"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/chart_fragment_container"
+        android:name="com.hottouk.gameinschool.view.student.RadarChartFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/show_radar_chart_btn"
+        tools:layout="@layout/fragment_radar_chart"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

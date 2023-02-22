@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "1037559874290",
+    "firebase_url": "https://gameinschool-default-rtdb.firebaseio.com",
+    "project_id": "gameinschool",
+    "storage_bucket": "gameinschool.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037559874290:android:0fb5c6d25408f453bf466b",
+        "android_client_info": {
+          "package_name": "com.hottouk.gameinschool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037559874290-kbtjcoc862th4l2kr7h9b8un9egnpu8s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAi5uFqSgW3faMiMUC5rfWM6CgKm79PPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1037559874290-kbtjcoc862th4l2kr7h9b8un9egnpu8s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037559874290:android:e75c45a1ff383f78bf466b",
+        "android_client_info": {
+          "package_name": "com.hottouk.schoolmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037559874290-kbtjcoc862th4l2kr7h9b8un9egnpu8s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAi5uFqSgW3faMiMUC5rfWM6CgKm79PPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1037559874290-kbtjcoc862th4l2kr7h9b8un9egnpu8s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

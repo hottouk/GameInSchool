@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="2dp"
+    android:background="@drawable/bg_item">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/innerCover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/student_character_imageview"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/student_number_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:text="학번 : "
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/student_character_imageview"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/student_number_content_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/student_number_textview"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="30101" />
+
+        <TextView
+            android:id="@+id/student_name_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            android:text="이름 : "
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/student_character_imageview"
+            app:layout_constraintTop_toBottomOf="@id/student_number_textview" />
+
+        <TextView
+            android:id="@+id/student_name_content_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/student_name_textview"
+            app:layout_constraintTop_toBottomOf="@id/student_number_content_textview"
+            tools:text="김동동" />
+
+        <TextView
+            android:id="@+id/student_level_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            android:text="레벨 : "
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/student_character_imageview"
+            app:layout_constraintTop_toBottomOf="@id/student_name_textview" />
+
+        <TextView
+            android:id="@+id/student_level_content_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/student_level_textview"
+            app:layout_constraintTop_toBottomOf="@id/student_name_textview"
+            tools:text="30" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="265dp"
+            android:layout_height="wrap_content"
+            android:progress="0"
+            app:layout_constraintBottom_toBottomOf="@id/student_character_imageview"
+            app:layout_constraintStart_toStartOf="@id/student_number_textview"
+            tools:layout_editor_absoluteX="120dp" />
+
+        <TextView
+            android:id="@+id/current_exp_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/total_exp_textview"
+            app:layout_constraintBottom_toTopOf="@id/progressBar"
+            app:layout_constraintEnd_toStartOf="@id/total_exp_textview"
+            app:layout_constraintTop_toTopOf="@id/total_exp_textview"
+            tools:text="50" />
+
+        <TextView
+            android:id="@+id/total_exp_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/progressBar"
+            app:layout_constraintEnd_toEndOf="@id/progressBar"
+            tools:text="/250" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintBottom_toTopOf="@id/total_exp_textview"
+            app:layout_constraintEnd_toEndOf="@id/progressBar"
+            app:layout_constraintTop_toTopOf="@id/student_number_textview">
+
+            <ImageView
+                android:id="@+id/student_profile_imageview"
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

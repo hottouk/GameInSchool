@@ -1,0 +1,89 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+    //RoomDB
+    id 'kotlin-kapt'
+    //구글 서비스
+    id 'com.google.gms.google-services'
+}
+
+android {
+    namespace 'com.hottouk.gameinschool'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.hottouk.gameinschool"
+        minSdk 26
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures{
+        viewBinding = true
+    }
+}
+
+dependencies {
+
+    //기본설정
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    //RoomDB 설정
+    implementation "androidx.room:room-runtime:2.5.0"
+    kapt "androidx.room:room-compiler:2.5.0"
+
+    //파이어베이스 서비스
+    implementation platform('com.google.firebase:firebase-bom:31.0.3')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-database-ktx'
+    implementation 'com.google.firebase:firebase-storage-ktx'
+
+    //카드뷰
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    // livedata
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
+
+    //뷰 모델
+    implementation 'androidx.activity:activity-ktx:1.6.1'
+    implementation 'androidx.fragment:fragment-ktx:1.5.5'
+
+    // Kakao-SDK
+    implementation "com.kakao.sdk:v2-all:2.12.0" // 전체 모듈 설치, 2.11.0 버전부터 지원
+    // 네이버
+    implementation("com.navercorp.nid:oauth:5.3.0")
+
+    // DateStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    // 글라이드
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+
+    //챠트
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+}
