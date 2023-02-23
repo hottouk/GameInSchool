@@ -8,8 +8,9 @@ class KeyValue {
         const val DB_SCHOOL_CLASSES = "Classes"
         const val DB_STUDENTS = "Students"
         const val DB_PETS = "Pets"
-        const val DB_PARTICIPANTS = "IsParticipating"
         const val DB_PROPERTY_PET_IMG = "petUrlImage"
+        const val DB_PARTICIPANTS = "IsParticipating"
+        const val DB_COMPLETE = "IsComplete"
 
         //SharedPref
         const val SHARED_PREFERENCES = "sharedPref"

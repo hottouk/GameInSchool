@@ -19,6 +19,7 @@ class SchoolMonsterViewModel : ViewModel() {
     private var mSelectedClassMonsterList = MutableLiveData<MutableList<SchoolMonster>>()
     private var mParticipantList = MutableLiveData<MutableList<Student>>()
     private var mMyParticipationMonsterList = MutableLiveData<MutableList<SchoolMonster>>()
+    private var mMyCompleteMonsterList = MutableLiveData<MutableList<SchoolMonster>>()
 
     //선택 사항
     private var mSelectedTeacher = MutableLiveData<String>() //교사 선택
@@ -68,6 +69,15 @@ class SchoolMonsterViewModel : ViewModel() {
             }
         }
         return mMyParticipationMonsterList
+    }
+
+    fun fetchMyCompleteMonsterList(myId: String): LiveData<MutableList<SchoolMonster>> {
+        viewModelScope.launch {
+            repo.getMyCompleteSchoolWorkList(myId).observeForever {
+                mMyCompleteMonsterList.value = it
+            }
+        }
+        return mMyCompleteMonsterList
     }
 
     //---------------------------------------------------------------------------------------내부로직

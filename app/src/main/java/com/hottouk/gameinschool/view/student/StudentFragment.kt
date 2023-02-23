@@ -2,6 +2,7 @@ package com.hottouk.gameinschool.view.student
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -59,13 +60,12 @@ class StudentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainViewModel.fetchEntireStudentList().observe(viewLifecycleOwner) { students ->
-//            students.forEach { student ->
-//                viewModel.fetchStudentPetList(student.userId).observe(viewLifecycleOwner) {
-//                    student.getCharacterAbility(it)
-//                }
-//            }
-            setStudentAdapter(students)
+        mainViewModel.fetchEntireStudenPetList().observe(viewLifecycleOwner) {
+            var studentList = it.keys.toMutableList()
+            studentList.forEach { student ->
+                it[student]?.let { pets -> student.getCharacterAbility(pets) } //학생의 펫 받아 합산하여 학생 경험치로 이관
+            }
+            setStudentAdapter(studentList)
         }
     }
 

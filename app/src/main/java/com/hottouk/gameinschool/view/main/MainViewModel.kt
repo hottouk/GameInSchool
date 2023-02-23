@@ -61,15 +61,18 @@ class MainViewModel(private val user: Student) : ViewModel() {
         return mMyInfo
     }
 
-    //전체 학생들 데이터 불러오기 from FireBase #네트워크
-    fun fetchEntireStudentList(): LiveData<MutableList<Student>> {
-        val entireStudentList = MutableLiveData<MutableList<Student>>()
+    //전체 학생&펫 데이터 불러오기 from 학생 DB FireBase #네트워크
+    fun fetchEntireStudenPetList(): LiveData<MutableMap<Student, MutableList<Pet>>> {
+        val entireStudentPetList = MutableLiveData<MutableMap<Student, MutableList<Pet>>>()
         viewModelScope.launch {
-            repo.getEntireStudentList().observeForever {
-                entireStudentList.value = it
+            repo.getEntireStudentPetList().observeForever {
+                entireStudentPetList.value = it
             }
+//            repo.getEntireStudentList().observeForever {
+//                entireStudentList.value = it
+//            }
         }
-        return entireStudentList
+        return entireStudentPetList
     }
 
     //전체 교사 데이터 불러오기 from FireBase #네트워크

@@ -18,6 +18,11 @@ class StudentRvAdapter() :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bindViews(student: Student) {
+            student.getProgressBar(
+                binding.totalExpTextview,
+                binding.currentExpTextview,
+                binding.progressBar
+            )
             binding.studentNameContentTextview.text = student.userName
             binding.studentNumberContentTextview.text = student.studentNumber
             binding.studentLevelContentTextview.text = student.studentLevel.toString()

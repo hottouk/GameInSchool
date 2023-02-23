@@ -79,7 +79,7 @@ data class Student(
         }
     }
 
-    fun getCharacterAbility(studentPetList: MutableList<com.hottouk.gameinschool.model.network.Pet>) {
+    fun getCharacterAbility(studentPetList: MutableList<Pet>) {
         var sumLeadership = 0
         var sumAcademic = 0
         var sumCooperation = 0

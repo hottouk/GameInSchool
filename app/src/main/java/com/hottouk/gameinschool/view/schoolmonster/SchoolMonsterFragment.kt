@@ -23,6 +23,10 @@ class SchoolMonsterFragment : Fragment() {
     private var mBinding: FragmentSchoolMonsterBinding? = null
     val binding get() = mBinding!!
 
+    private val adapter: SchoolMonsterRvAdapter by lazy {
+        SchoolMonsterRvAdapter()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,8 +43,13 @@ class SchoolMonsterFragment : Fragment() {
             viewModel.fetchMonsterList(teacherId, subject).observe(viewLifecycleOwner) { monsters ->
                 viewModel.fetchMyParticipationMonsterList(mainViewModel.getMyId())
                     .observe(viewLifecycleOwner) { participatingWorks ->
-                        setMonsterListAdapter(monsters, participatingWorks)
+                        adapter.getParticipatingMonsterList(participatingWorks)
                     }
+                viewModel.fetchMyCompleteMonsterList(mainViewModel.getMyId())
+                    .observe(viewLifecycleOwner) { completeWorks ->
+                        adapter.getCompleteMonsterList(completeWorks)
+                    }
+                setMonsterListAdapter(monsters)
             }
         }
     }
@@ -52,11 +61,7 @@ class SchoolMonsterFragment : Fragment() {
 
     //--------------------------------------------------------------------------------------사용자함수
     //몬스터 어뎁터 세팅
-    private fun setMonsterListAdapter(
-        monsterList: MutableList<SchoolMonster>,
-        participatingWorkList: MutableList<SchoolMonster>
-    ) {
-        val adapter = SchoolMonsterRvAdapter()
+    private fun setMonsterListAdapter(monsterList: MutableList<SchoolMonster>) {
         binding.schoolMonsterRecyclerview.adapter = adapter
         binding.schoolMonsterRecyclerview.layoutManager = LinearLayoutManager(context)
         adapter.setOnItemClickListener {
@@ -65,7 +70,6 @@ class SchoolMonsterFragment : Fragment() {
                 .replace(R.id.main_fragment_container_view, SchoolMonsterDetailFragment())
                 .commit()
         }
-        adapter.getParticipatingMonsterList(participatingWorkList)
         adapter.submitList(monsterList)
     }
 }

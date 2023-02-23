@@ -2,6 +2,7 @@ package com.hottouk.gameinschool.repository
 
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.hottouk.gameinschool.model.network.*
 import com.hottouk.gameinschool.util.KeyValue
@@ -23,11 +24,10 @@ class Repository {
     //원격 DB
     private val database = Firebase.database
     val teacherDB = database.reference.child(KeyValue.DB_TEACHER_USERS)
-    val schoolWorkDB = database.reference.child(KeyValue.DB_SCHOOL_ACTIVITIES)
     val classDB = database.reference.child(KeyValue.DB_SCHOOL_CLASSES)
     val studentDB = database.reference.child(KeyValue.DB_STUDENTS)
 
-    //전체 학생 데이터 불러오기 from FireBase
+    //전체 학생 데이터 불러오기 from 학생 DB FireBase
     fun getEntireStudentList(
     ): MutableLiveData<MutableList<Student>> {
         val mutableStudentData = MutableLiveData<MutableList<Student>>()
@@ -49,6 +49,37 @@ class Repository {
             override fun onCancelled(error: DatabaseError) {}
         })
         return mutableStudentData
+    }
+
+    //전체 학생&펫 데이터 불러오기 from 학생 DB FireBase
+    fun getEntireStudentPetList(
+    ): MutableLiveData<MutableMap<Student, MutableList<Pet>>> {
+        val mutableStudentPetData = MutableLiveData<MutableMap<Student, MutableList<Pet>>>()
+        studentDB.addValueEventListener(object : ValueEventListener {
+            var mapData: MutableMap<Student, MutableList<Pet>> = mutableMapOf()
+            override fun onDataChange(snapshot: DataSnapshot) {
+                mapData.clear()
+                if (snapshot.exists()) {
+                    var keyData = Student() //초기화
+                    for (studentAndPet in snapshot.children) { //학생
+                        val studentData = studentAndPet.getValue(Student::class.java)
+                        studentData?.let { keyData = it }
+                        val valueData = mutableListOf<Pet>() //펫 초기화
+                        for (pet in studentAndPet.child(KeyValue.DB_PETS).children) {
+                            val petData = pet.getValue(Pet::class.java)
+                            petData?.let { valueData.add(it) } //펫 값은 null 일 수도 있다.
+                        }
+                        keyData?.let { mapData.put(it, valueData) }
+                    }
+                    mutableStudentPetData.value = mapData
+                } else {
+                    mutableStudentPetData.value = mapData
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {}
+        })
+        return mutableStudentPetData
     }
 
     //전체 교사 데이터 받아오기 from 파이어베이스
@@ -220,7 +251,7 @@ class Repository {
         return mutableParticipantsData
     }
 
-    //나의 참가활동 확인하기
+    //나의 참가 활동 불러오기
     fun getMyParticipationSchoolWorkList(myId: String): MutableLiveData<MutableList<SchoolMonster>> {
         val mutableParticipationData = MutableLiveData<MutableList<SchoolMonster>>()
         studentDB.child(myId).child(KeyValue.DB_PARTICIPANTS)
@@ -243,6 +274,31 @@ class Repository {
                 }
             })
         return mutableParticipationData
+    }
+
+    //나의 완료활동 불러오기
+    fun getMyCompleteSchoolWorkList(myId: String): MutableLiveData<MutableList<SchoolMonster>> {
+        val mutableCompleteList = MutableLiveData<MutableList<SchoolMonster>>()
+        studentDB.child(myId).child(KeyValue.DB_COMPLETE)
+            .addValueEventListener(object : ValueEventListener {
+                val listData = mutableListOf<SchoolMonster>()
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    listData.clear()
+                    if (snapshot.exists()) {
+                        for (item in snapshot.children) {
+                            val data = item.getValue(SchoolMonster::class.java)
+                            data?.let { listData.add(it) }
+                        }
+                        mutableCompleteList.value = listData
+                    } else {
+                        mutableCompleteList.value = listData
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
+        return mutableCompleteList
     }
 
 }
