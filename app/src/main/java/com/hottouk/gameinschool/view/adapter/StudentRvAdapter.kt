@@ -16,7 +16,6 @@ class StudentRvAdapter() :
 
     inner class StudentItemViewHolder(private val binding: ItemStudentBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bindViews(student: Student) {
             student.getProgressBar(
                 binding.totalExpTextview,
