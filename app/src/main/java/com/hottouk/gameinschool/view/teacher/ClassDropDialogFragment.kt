@@ -2,6 +2,7 @@ package com.hottouk.gameinschool.view.teacher
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +22,6 @@ class ClassDropDialogFragment : Fragment() {
     private var mBinding: FragmentDialogBinding? = null
     val binding get() = mBinding!!
 
-    //뒤로가기
     private lateinit var callback: OnBackPressedCallback
 
     //---------------------------------------------------------------------------------------생명주기
@@ -36,12 +36,26 @@ class ClassDropDialogFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         mBinding = FragmentDialogBinding.inflate(inflater, container, false)
+        bindViews()
+
+        return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        callback.remove()
+        mBinding = null
+    }
+
+    //---------------------------------------------------------------------------------------생명주기
+
+    private fun bindViews(){
+        cancelBtnClick()
         viewModel.selectedTeacher.observe(viewLifecycleOwner) { teacher ->
             viewModel.selectedClass.observe(viewLifecycleOwner) { schoolClass ->
                 binding.actionBar.text = "반 탈퇴하기"
@@ -58,15 +72,17 @@ class ClassDropDialogFragment : Fragment() {
                         .remove(this)
                         .commit()
                     requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_fragment_container_view,TeacherFragment())
+                        .replace(R.id.main_fragment_container_view, TeacherFragment())
                         .commit()
                     viewModel.dropModeOff()
                 }
             }
         }
+    }
+
+    private fun cancelBtnClick(){
         binding.cancelBtn.setOnClickListener {
             viewModel.dropModeOff()
         }
-        return binding.root
     }
 }

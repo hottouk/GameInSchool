@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.hottouk.gameinschool.R
 import com.hottouk.gameinschool.databinding.FragmentClassMateRankBinding
@@ -50,10 +51,16 @@ class ClassMateRankFragment : Fragment() {
         viewModel.dropMode.observe(viewLifecycleOwner) {
             if (it) {
                 binding.coverLayout.visibility = View.VISIBLE
-                binding.dialogFragmentContainerView.visibility = View.VISIBLE
+                binding.classDropDialogFragmentContainerView.visibility = View.VISIBLE
+                childFragmentManager.beginTransaction().replace(
+                    R.id.class_drop_dialog_fragment_container_view,
+                    ClassDropDialogFragment(),"classDrop"
+                ).commit()
             } else {
                 binding.coverLayout.visibility = View.INVISIBLE
-                binding.dialogFragmentContainerView.visibility = View.GONE
+                binding.classDropDialogFragmentContainerView.visibility = View.GONE
+                childFragmentManager.findFragmentByTag("classDrop")
+                    ?.let { frag -> childFragmentManager.beginTransaction().remove(frag).commit() }
             }
         }
         return binding.root
@@ -62,13 +69,8 @@ class ClassMateRankFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.fetchClassMateList().observe(viewLifecycleOwner) {
-            var petList = mutableListOf<Pet>()
             var studentIdList = mutableListOf<String>()
-            it.forEach { map ->
-                studentIdList = map.keys.toMutableList() //키값 받아오기
-                petList = map.values.toMutableList() //펫값 받아오기
-            }
-            setClassMateAdapter(petList)
+            setClassMateAdapter(it.values.toMutableList())
         }
     }
 

@@ -38,10 +38,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@id/student_number_textview"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/student_number_textview"
+            app:layout_constraintBottom_toBottomOf="@id/student_number_textview"
             tools:text="30101" />
 
         <TextView
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="5dp"
+            android:layout_marginTop="5dp"
             android:text="이름 : "
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@id/student_character_imageview"
@@ -60,10 +60,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="5dp"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@id/student_name_textview"
-            app:layout_constraintTop_toBottomOf="@id/student_number_content_textview"
+            app:layout_constraintTop_toTopOf="@id/student_name_textview"
+            app:layout_constraintBottom_toBottomOf="@id/student_name_textview"
             tools:text="김동동" />
 
         <TextView
@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="5dp"
+            android:layout_marginTop="5dp"
             android:text="레벨 : "
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@id/student_character_imageview"
@@ -82,10 +82,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="5dp"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@id/student_level_textview"
-            app:layout_constraintTop_toBottomOf="@id/student_name_textview"
+            app:layout_constraintTop_toTopOf="@id/student_level_textview"
+            app:layout_constraintBottom_toBottomOf="@id/student_level_textview"
             tools:text="30" />
 
         <ProgressBar
@@ -93,9 +93,10 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="265dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:progress="0"
-            app:layout_constraintBottom_toBottomOf="@id/student_character_imageview"
             app:layout_constraintStart_toStartOf="@id/student_number_textview"
+            app:layout_constraintTop_toBottomOf="@id/student_level_textview"
             tools:layout_editor_absoluteX="120dp" />
 
         <TextView
@@ -119,11 +120,10 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
+            android:layout_marginBottom="4dp"
             app:cardCornerRadius="12dp"
             app:layout_constraintBottom_toTopOf="@id/total_exp_textview"
-            app:layout_constraintEnd_toEndOf="@id/progressBar"
-            app:layout_constraintTop_toTopOf="@id/student_number_textview">
+            app:layout_constraintEnd_toEndOf="@id/progressBar">
 
             <ImageView
                 android:id="@+id/student_profile_imageview"

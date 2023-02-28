@@ -9,8 +9,9 @@
     <TextView
         android:id="@+id/action_bar"
         android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:minHeight="40dp"
         android:padding="8dp"
         android:text="@string/teacher_actionbar"
         android:textSize="18sp"
@@ -61,12 +62,10 @@
         android:layout_height="match_parent"
         android:alpha="0.5"
         android:background="@color/black"
-        android:visibility="invisible"
-        tools:visibility="visible" />
+        android:visibility="invisible" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/dialog_fragment_container_view"
-        android:name="com.hottouk.gameinschool.view.teacher.ClassSignUpDialogFragment"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:visibility="gone"
@@ -80,7 +79,6 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/pet_confirm_fragment_container_view"
         android:layout_width="340dp"
-        android:name="com.hottouk.gameinschool.view.teacher.PetConfirmationFragment"
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"

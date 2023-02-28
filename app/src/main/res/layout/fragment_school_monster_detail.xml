@@ -9,14 +9,12 @@
     <TextView
         android:id="@+id/action_bar"
         android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:background="@color/teal_200"
         android:gravity="center_vertical"
-        android:paddingStart="8dp"
-        android:paddingTop="4dp"
-        android:paddingEnd="8dp"
+        android:padding="8dp"
         android:text="몬스터 상세정보"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +48,7 @@
         <TextView
             android:id="@+id/subject_textview"
             android:layout_width="100dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -62,7 +60,7 @@
         <TextView
             android:id="@+id/school_work_title_edit_textview"
             android:layout_width="0dp"
-            android:layout_height="33dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -76,6 +74,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:padding="8dp"
+            android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="@id/monster_detail_imageview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/monster_detail_imageview"
@@ -85,9 +84,9 @@
         <TextView
             android:id="@+id/school_work_detail_textview"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:padding="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:scrollbars="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/monster_detail_imageview"
@@ -141,8 +140,9 @@
         <TextView
             android:id="@+id/score_label"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
+            android:padding="4dp"
             android:text="처치 시 획득 경험치"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -154,6 +154,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/ability_leadership"
+            android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/leadership_textview"
             app:layout_constraintStart_toStartOf="@id/leadership_textview"
@@ -176,6 +177,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/ability_academical"
+            android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/academic_textview"
             app:layout_constraintStart_toStartOf="@id/academic_textview"
@@ -199,6 +201,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/ability_cooperation"
+            android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/cooperation_textview"
             app:layout_constraintStart_toStartOf="@id/cooperation_textview"
@@ -210,7 +213,6 @@
             android:layout_height="0dp"
             android:background="@color/gray_cc"
             android:gravity="center"
-
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="@id/leadership_textview"
             app:layout_constraintEnd_toStartOf="@id/sincerity_textview"
@@ -223,6 +225,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/ability_sincerity"
+            android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/sincerity_textview"
             app:layout_constraintStart_toStartOf="@id/sincerity_textview"
@@ -234,7 +237,6 @@
             android:layout_height="0dp"
             android:background="@color/gray_cc"
             android:gravity="center"
-
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="@id/leadership_textview"
             app:layout_constraintEnd_toStartOf="@id/career_textview"
@@ -247,6 +249,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/ability_career"
+            android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/career_textview"
             app:layout_constraintStart_toStartOf="@id/career_textview"
@@ -260,7 +263,6 @@
             android:gravity="center"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="@id/leadership_textview"
-
             app:layout_constraintEnd_toStartOf="@id/money_textview"
             app:layout_constraintStart_toEndOf="@id/sincerity_textview"
             app:layout_constraintTop_toTopOf="@id/leadership_textview"
@@ -271,6 +273,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/ability_point"
+            android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/money_textview"
             app:layout_constraintStart_toStartOf="@id/money_textview"
@@ -305,8 +308,9 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
+            android:padding="4dp"
             android:text="현재 참여 인원"
             android:textSize="16sp" />
 
@@ -320,7 +324,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/participation_recyclerview"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginHorizontal="10dp"

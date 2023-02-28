@@ -18,8 +18,8 @@
 
     <TextView
         android:id="@+id/info_textview"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="@id/user_profile_imageview"
         app:layout_constraintStart_toStartOf="@id/user_profile_imageview"

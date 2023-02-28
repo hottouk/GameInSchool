@@ -14,18 +14,21 @@ import com.hottouk.gameinschool.util.KeyValue
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
+import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 
 class LogInActivity : AppCompatActivity() {
     private val viewModel: LoginViewModel by viewModels()
 
-    private var mBinding : ActivityLogInActivityBinding? = null
+    private var mBinding: ActivityLogInActivityBinding? = null
     private val binding get() = mBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityLogInActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        var keyHash = Utility.getKeyHash(this)
+        Log.d("로그인",keyHash)
         binding.kakaoLoginBtn.setOnClickListener {
             checkKaKaoLogin()
         }
@@ -49,11 +52,12 @@ class LogInActivity : AppCompatActivity() {
         }
     }
 
-    //카카오 로그인
-    fun kakaoInitLogin() { //계정 로그인 콜백
+    //카카오 처음 로그인
+    private fun kakaoInitLogin() { //계정 로그인 콜백
         val kakaoLogincallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) { //계정으로 로그인한 경우
                 Log.e("로그인", "카카오계정으로 로그인 실패", error)
+                Toast.makeText(this, "카카오 계정으로 로그인하는데 에러가 발생하였습니다.", Toast.LENGTH_SHORT).show()
             } else if (token != null) {
                 fetchKakaoUserInfo()
             }
@@ -63,12 +67,13 @@ class LogInActivity : AppCompatActivity() {
             UserApiClient.instance.loginWithKakaoTalk(this) { token, error ->
                 if (error != null) {
                     Log.e("로그인", "카카오톡으로 로그인 실패", error)
+                    Toast.makeText(this, "본 기기에 인식되는 카카오톡 어플이 없습니다.", Toast.LENGTH_SHORT).show()
                     // 사용자가 카카오톡 설치 후 디바이스 권한 요청 화면에서 로그인을 취소한 경우,
                     // 의도적인 로그인 취소로 보고 카카오계정으로 로그인 시도 없이 로그인 취소로 처리 (예: 뒤로 가기)
                     if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
                         return@loginWithKakaoTalk
                     }
-                    // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인 시도
+                    // 카카오톡 로그인에 에러 나서, 카카오계정으로 로그인 시도
                     UserApiClient.instance.loginWithKakaoAccount(
                         this,
                         callback = kakaoLogincallback
@@ -83,7 +88,7 @@ class LogInActivity : AppCompatActivity() {
     }
 
     //인증 성공하여 카카오 사용자 정보 불러오기
-    fun fetchKakaoUserInfo() {
+    private fun fetchKakaoUserInfo() {
         UserApiClient.instance.me { user, error ->
             if (error != null) {
                 Toast.makeText(this, "카카오 사용자 정보를 불러오는데 실패했습니다.", Toast.LENGTH_SHORT).show()

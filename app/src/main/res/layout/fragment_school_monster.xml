@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/action_bar"
         android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:padding="8dp"
         android:text="@string/school_monster_actionbar"

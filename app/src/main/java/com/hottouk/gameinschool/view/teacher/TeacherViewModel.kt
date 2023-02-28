@@ -1,5 +1,6 @@
 package com.hottouk.gameinschool.view.teacher
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -103,8 +104,8 @@ class TeacherViewModel : ViewModel() {
         return isOldMember
     }
 
-    fun fetchClassMateList(): LiveData<MutableList<MutableMap<String, Pet>>> {
-        val classMatePetList = MutableLiveData<MutableList<MutableMap<String, Pet>>>()
+    fun fetchClassMateList(): LiveData<MutableMap<String, Pet>> {
+        val classMatePetList = MutableLiveData<MutableMap<String, Pet>>()
         viewModelScope.launch {
             mSelectedTeacher.value?.let { teacher ->
                 mSelectedClass.value?.let { schoolClass ->

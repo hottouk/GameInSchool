@@ -2,6 +2,7 @@ package com.hottouk.gameinschool.view.teacher
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,6 @@ import com.hottouk.gameinschool.view.main.MainViewModel
 class ClassSignUpDialogFragment : Fragment() {
 
     private val viewModel: TeacherViewModel by activityViewModels()
-    private val mainViewModel: MainViewModel by activityViewModels()
 
     private var mBinding: FragmentDialogBinding? = null
     val binding get() = mBinding!!
@@ -27,7 +27,6 @@ class ClassSignUpDialogFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         callback = object : OnBackPressedCallback(true) {
-            //뒤로가기 버튼 클릭 시
             override fun handleOnBackPressed() {
                 viewModel.signUpModeOff()
             }
@@ -41,6 +40,18 @@ class ClassSignUpDialogFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         mBinding = FragmentDialogBinding.inflate(inflater, container, false)
+        bindViews()
+        return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mBinding = null
+        callback.remove()
+    }
+
+    //---------------------------------------------------------------------------------------뷰그리기
+    private fun bindViews(){
         viewModel.selectedTeacher.observe(viewLifecycleOwner) { teacher ->
             viewModel.selectedClass.observe(viewLifecycleOwner) { schoolClass ->
                 binding.questionTextview.text =
@@ -55,6 +66,5 @@ class ClassSignUpDialogFragment : Fragment() {
         binding.cancelBtn.setOnClickListener {
             viewModel.signUpModeOff()
         }
-        return binding.root
     }
 }

@@ -2,13 +2,16 @@ package com.hottouk.gameinschool.view.schoolmonster
 
 import android.content.Context
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.HorizontalScrollView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.hottouk.gameinschool.R
 import com.hottouk.gameinschool.databinding.FragmentSchoolMonsterDetailBinding
 import com.hottouk.gameinschool.model.network.Student
@@ -56,8 +59,14 @@ class SchoolMonsterDetailFragment : Fragment() {
                     monster.getMonsterImage(binding.monsterDetailImageview)
                     binding.subjectTextview.text = monster.subject
                     binding.schoolWorkTitleEditTextview.text = monster.schoolWorkTitle
-                    binding.schoolWorkSimpleInfoTextview.text = monster.schoolWorkSimpleInfo
-                    binding.schoolWorkDetailTextview.text = monster.schoolWorkDetailInfo
+                    binding.schoolWorkSimpleInfoTextview.apply {
+                        this.text = monster.schoolWorkSimpleInfo
+                        this.movementMethod = ScrollingMovementMethod.getInstance()
+                    }
+                    binding.schoolWorkDetailTextview.apply {
+                        this.text = monster.schoolWorkDetailInfo
+                        this.movementMethod = ScrollingMovementMethod.getInstance()
+                    }
                     binding.expectedDifficultyRating.rating = monster.difficulty?.toFloat() ?: 0f
                     binding.leadershipTextview.text = monster.leadership.toString()
                     binding.academicTextview.text = monster.academicAbility.toString()
@@ -101,7 +110,8 @@ class SchoolMonsterDetailFragment : Fragment() {
 
     private fun setParticipantListAdapter(participants: MutableList<Student>) {
         val adapter = ParticipationStudentRvAdapter()
-        binding.participationRecyclerview.layoutManager = LinearLayoutManager(context)
+        binding.participationRecyclerview.layoutManager =
+            LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         binding.participationRecyclerview.adapter = adapter
         adapter.submitList(participants)
     }

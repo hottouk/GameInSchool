@@ -12,6 +12,7 @@ import com.hottouk.gameinschool.util.KeyValue
 import com.hottouk.gameinschool.view.home.HomeFragment
 import com.hottouk.gameinschool.view.schoolmonster.SchoolClassFragment
 import com.hottouk.gameinschool.view.student.StudentFragment
+import com.hottouk.gameinschool.view.teacher.ClassMateRankFragment
 import com.hottouk.gameinschool.view.teacher.TeacherFragment
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private val teacherFragment = TeacherFragment()
     private val schoolClassFragment = SchoolClassFragment()
     private val studentFragment = StudentFragment()
+    private val classMateFragment = ClassMateRankFragment()
 
     //UI관련
     private val bottomNavigationView: BottomNavigationView by lazy {

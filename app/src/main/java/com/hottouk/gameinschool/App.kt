@@ -2,6 +2,7 @@ package com.hottouk.gameinschool
 
 import android.app.Application
 import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
 import com.kakao.sdk.common.KakaoSdk
 
 class App : Application() {
@@ -13,6 +14,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         KakaoSdk.init(this, "1bda287d523c81a881c20f58aaf2ddaf")
+
     }
 
     companion object {

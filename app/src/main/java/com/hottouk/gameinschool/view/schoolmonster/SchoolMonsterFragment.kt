@@ -1,11 +1,13 @@
 package com.hottouk.gameinschool.view.schoolmonster
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hottouk.gameinschool.R
@@ -26,6 +28,24 @@ class SchoolMonsterFragment : Fragment() {
     private val adapter: SchoolMonsterRvAdapter by lazy {
         SchoolMonsterRvAdapter()
     }
+
+    //뒤로가기
+    private lateinit var callback: OnBackPressedCallback
+
+    //---------------------------------------------------------------------------------------생명주기
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                parentFragmentManager.beginTransaction() //이전 프래그먼트로 돌아간다.
+                    .replace(R.id.main_fragment_container_view, SchoolClassFragment())
+                    .commit()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,6 +88,7 @@ class SchoolMonsterFragment : Fragment() {
             viewModel.selectMonster(it)
             parentFragmentManager.beginTransaction()
                 .replace(R.id.main_fragment_container_view, SchoolMonsterDetailFragment())
+                .addToBackStack(null)
                 .commit()
         }
         adapter.submitList(monsterList)

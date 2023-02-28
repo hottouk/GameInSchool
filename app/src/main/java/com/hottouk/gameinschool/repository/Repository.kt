@@ -113,7 +113,6 @@ class Repository {
         val selectedClassDB = classDB.child(teacherId)
         selectedClassDB.addValueEventListener(object : ValueEventListener {
             val listData: MutableList<SchoolClass> = mutableListOf()
-
             override fun onDataChange(snapshot: DataSnapshot) {
                 listData.clear()
                 if (snapshot.exists()) {
@@ -137,25 +136,22 @@ class Repository {
     fun getClassMateList(
         teacherId: String,
         classId: String
-    ): MutableLiveData<MutableList<MutableMap<String, Pet>>> {
-        val mutableStudentPetData = MutableLiveData<MutableList<MutableMap<String, Pet>>>()
+    ): MutableLiveData<MutableMap<String, Pet>> {
+        val mutableStudentPetData = MutableLiveData<MutableMap<String, Pet>>()
         classDB.child(teacherId).child(classId).child(KeyValue.DB_STUDENTS)
             .addValueEventListener(object : ValueEventListener {
-                val listData: MutableList<MutableMap<String, Pet>> = mutableListOf()
                 val mapData: MutableMap<String, Pet> = mutableMapOf()
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    listData.clear()
+                    mapData.clear()
                     if (snapshot.exists()) {
                         for (pet in snapshot.children) {
-                            mapData.clear()
                             val key = pet.key
                             val data = pet.getValue(Pet::class.java)
-                            data?.let { mapData[key.toString()] = data }
-                            listData.add(mapData)
+                            key?.let { petKey -> data?.let { data -> mapData.put(petKey, data) } }
                         }
-                        mutableStudentPetData.value = listData
+                        mutableStudentPetData.value = mapData
                     } else {
-                        mutableStudentPetData.value = listData
+                        mutableStudentPetData.value = mapData
                     }
                 }
 
